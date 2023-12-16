@@ -5,13 +5,13 @@ import requests
 
 
 class Clash:
-    @staticmethod
-    def rule_mode():
-        Clash.send_change_proxy_mode_request('Rule')
+    @classmethod
+    def rule_mode(cls):
+        cls.send_change_proxy_mode_request('Rule')
 
-    @staticmethod
-    def global_mode():
-        Clash.send_change_proxy_mode_request('Global')
+    @classmethod
+    def global_mode(cls):
+        cls.send_change_proxy_mode_request('Global')
 
     @staticmethod
     def send_change_proxy_mode_request(mode: str):
@@ -20,5 +20,7 @@ class Clash:
         body = {'mode': mode}
         res = requests.session().request(headers=header, method='patch', url='http://127.0.0.1:61425/configs',
                                          json=body)
+
         time.sleep(0.5)
+
         logging.info(f'Switch to {mode} Mode')
