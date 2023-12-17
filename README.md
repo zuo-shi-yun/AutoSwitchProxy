@@ -13,7 +13,7 @@
 - 安装
     - 运行`!plugin get https://github.com/zuo-shi-yun/AutoSwitchProxy.git`
     - 进入插件目录执行`pip install -r requirements.txt`
-    - 更改`plugins/settings.json`中order字段，使本插件位于最末。
+    - 更改`plugins/settings.json`中`order`字段，使本插件位于最末。
 - 配置
   <details>
     <summary>自动配置(windows系统下)</summary>
@@ -40,7 +40,7 @@
   <details>
   <summary>总是报错“clash api连接失败,请检查clashAPI地址配置是否正确.”</summary>
 
-    - 检查config.yaml文件中是否有`external-controller`和`secret`配置项，若没有请手动添加这两项配置。
+    - 检查`config.yaml`文件中是否有`external-controller`和`secret`配置项，若没有请手动添加这两项配置。
     - windows检查Clash主目录下`profiles`文件夹内的配置文件(一堆数字.yml)中的`external-controller`和`secret`配置项，尝试使用该配置项。
     - linux下检查导入机场的配置文件中的`external-controller`和`secret`配置项，尝试使用该配置项。
     - 若还是不对，请搜索“clash如何使用Restful API”,参照结果配置`external-controller`和`secret`
