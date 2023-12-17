@@ -34,6 +34,10 @@ class AutoSwitchProxy(Plugin):
 def get_config():
     if isinstance(external_controller, str) and isinstance(secret, str):
         logging.info("自定义clash配置")
+    elif isinstance(external_controller, str):
+        raise Exception('仅手动配置了external_controller,请同时配置secret')
+    elif isinstance(secret, str):
+        raise Exception('仅手动配置了secret,请同时配置external_controller')
     else:
         logging.info("自动获取clash配置")
         Clash.get_api_config()

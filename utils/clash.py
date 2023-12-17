@@ -7,9 +7,9 @@ import requests
 from ruamel.yaml import YAML
 
 # API地址
-external_controller = None
+external_controller: str = None
 # API密钥 若为空请改为''
-secret = None
+secret: str = None
 
 
 class Clash:
@@ -26,7 +26,7 @@ class Clash:
         system = platform.system()
 
         if system != "Windows":
-            raise Exception('自动导入配置仅支持windows系统,请手动设置clash配置')
+            raise Exception('自动导入配置仅支持windows系统,请参照READNME手动设置clash配置')
 
         user_name = os.environ.get("USERNAME")  # 用户名
         # 配置文件路径
@@ -55,11 +55,14 @@ class Clash:
     @classmethod
     def check_clash_api_connect(cls):
         try:
-            res = requests.get(f'http://{external_controller}/configs')
+            header = {'Authorization': f'Bearer {secret}'}
+            res = requests.get(f'http://{external_controller}/configs', headers=header)
+            if not res.ok:
+                raise Exception(f'clash api连接失败,请检查clashAPI密钥是否正确.当前API密钥:secret:{secret}')
             logging.info('clash api连接正常')
-        except Exception as e:
+        except requests.exceptions.ConnectionError as e:
             raise Exception(
-                f'clash api连接失败,请检查clash 配置是否正确.当前配置:external-controller:{external_controller},secret:{secret}')
+                f'clash api连接失败,请检查clashAPI地址配置是否正确.当前API地址:external-controller:{external_controller}')
 
     @staticmethod
     def send_change_proxy_mode_request(mode: str):
