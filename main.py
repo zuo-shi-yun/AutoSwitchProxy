@@ -13,6 +13,7 @@ class AutoSwitchProxy(Plugin):
     def __init__(self, plugin_host: PluginHost):
         self.host = plugin_host
         get_config()  # 获得配置
+        Clash.rule_mode()  # 默认rule模式
 
     @on(PersonNormalMessageReceived)
     @on(GroupNormalMessageReceived)
