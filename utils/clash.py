@@ -30,7 +30,7 @@ class Clash:
 
         user_name = os.environ.get("USERNAME")  # 用户名
         # 配置文件路径
-        config_path = fr"C:\Users\{user_name}\.config\clash\config.yml"
+        config_path = fr"C:\Users\{user_name}\.config\clash\config.yaml"
 
         # 配置文件yaml
         try:
