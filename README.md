@@ -13,6 +13,7 @@
 - 安装
     - 运行`!plugin get https://github.com/zuo-shi-yun/AutoSwitchProxy.git`
     - 进入插件目录执行`pip install -r requirements.txt`
+    - 更改`plugins/settings.json`中order字段，使本插件位于最末。
 - 配置
   <details>
     <summary>自动配置(windows系统下)</summary>
@@ -44,4 +45,4 @@
     - linux下检查导入机场的配置文件中的`external-controller`和`secret`配置项，尝试使用该配置项。
     - 若还是不对，请搜索“clash如何使用Restful API”,参照结果配置`external-controller`和`secret`
       配置项。([官方文档](https://clash.gitbook.io/doc/restful-api))
-  </details>    
+  </details>
