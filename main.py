@@ -1,5 +1,6 @@
 from pkg.plugin.host import EventContext, PluginHost
 from pkg.plugin.models import *
+
 from plugins.AutoSwitchProxy.utils.clash import Clash, external_controller, secret
 
 """
@@ -17,11 +18,14 @@ class AutoSwitchProxy(Plugin):
 
     @on(PersonNormalMessageReceived)
     @on(GroupNormalMessageReceived)
+    @on(PersonCommandSent)
+    @on(GroupCommandSent)
     def handle_normal_msg_send(self, event: EventContext, **kwargs):
         Clash.global_mode()  # 更改cfw模式——global
 
     @on(NormalMessageResponded)
     @on(SessionExpired)
+    @on(SessionExplicitReset)
     def handle_normal_msg_sent(self, event: EventContext, **kwargs):
         Clash.rule_mode()  # 更改cfw模式——rule
 
