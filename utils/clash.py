@@ -72,6 +72,6 @@ class Clash:
         res = requests.session().request(headers=header, method='patch', url=f'http://{external_controller}/configs',
                                          json=body)
 
-        time.sleep(0.5)
+        time.sleep(1)
 
         logging.info(f'Switch to {mode} Mode')
